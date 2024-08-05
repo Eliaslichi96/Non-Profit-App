@@ -1,0 +1,16 @@
+{% extends "events/base.html" %}
+
+{% block title %}Posts | OrlandoGals{% endblock %}
+
+{% block content %}
+<h2>Post Board</h2>
+{% for post in posts %}
+<div class="card mb-3">
+    <div class="card-body">
+        <h3 class="card-title">{{ post.title }}</h3>
+        <p class="card-text">{{ post.content }}</p>
+        <p><em>Posted by {{ post.author }} on {{ post.created_at }}</em></p>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

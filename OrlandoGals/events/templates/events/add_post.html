@@ -1,0 +1,16 @@
+{% extends "events/base.html" %}
+
+{% block title %}Add Post | OrlandoGals{% endblock %}
+
+{% block content %}
+<header class="my-4">
+    <h1 class="text-center">Add Post</h1>
+</header>
+<form method="post" class="mb-4">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.as_p }}
+    </div>
+    <button type="submit" class="btn btn-primary">Add Post</button>
+</form>
+{% endblock %}

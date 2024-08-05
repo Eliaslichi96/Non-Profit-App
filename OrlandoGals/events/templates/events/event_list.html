@@ -1,0 +1,39 @@
+{% extends "events/base.html" %}
+{% load static %}
+
+{% block title %}Events | OrlandoGals{% endblock %}
+
+{% block head %}
+<!-- FullCalendar CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<h2>Events Calendar</h2>
+<div id="calendar"></div>
+{% endblock %}
+
+{% block extra_scripts %}
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- Moment.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<!-- FullCalendar JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var events = [
+            {% for event in events %}
+            {
+            title: "{{ event.title|escapejs }}",
+            start: "{{ event.date }}T{{ event.time|escapejs }}"
+        }{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+        ];
+
+    $('#calendar').fullCalendar({
+        events: events
+    });
+    });
+</script>
+{% endblock %}
